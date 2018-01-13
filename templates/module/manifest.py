@@ -14,22 +14,15 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-"""
-URLs for the $app module.
-"""
 
-from django.conf.urls import url
+from django.utils.translation import ugettext_lazy as _
 
-from plinth.views import ServiceView
-from plinth.modules import $app
+from plinth.clients import validate
 
-urlpatterns = [
-    url(r'^apps/$app/$',
-        ServiceView.as_view(
-            service_id=$app.managed_services[0],
-            diagnostics_module_name='$app',
-            description=$app.description,
-            clients=$app.clients,
-            show_status_block=True),
-        name='index'),
-]
+clients = validate([{
+    'name': _('$app'),
+    'platforms': [{
+        'type': 'web',
+        'url': '/$app'
+    }]
+}])

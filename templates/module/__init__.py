@@ -25,6 +25,10 @@ from plinth import action_utils, actions, cfg, frontpage
 from plinth.menu import main_menu
 from plinth.utils import format_lazy
 
+from .manifest import clients
+
+clients = clients
+
 version = 1
 
 managed_services = ['$app']
